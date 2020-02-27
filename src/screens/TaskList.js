@@ -6,10 +6,12 @@ import 'moment/locale/pt-br'
 import commonStyles from '../commonStyles'
 import Task from '../components/Task'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import AddTask from './AdicionarTask'
 
 export default class TaskList extends Component{
     state = {
         showDoneTasks: true,
+        showAddTask: true,
         visibleTasks: [],
         tasks: [{
             id: Math.random(),
@@ -28,7 +30,7 @@ export default class TaskList extends Component{
     }
 
     togleFilter = () => {
-        this.setState({ showDoneTasks: !this.state.showDoneTasks }, this.filterTasks())
+        this.setState({ showDoneTasks: !this.state.showDoneTasks }, this.filterTasks)
     }
     filterTasks = () => {
         let visibleTasks = null
@@ -47,7 +49,7 @@ export default class TaskList extends Component{
                 task.doneAt = task.doneAt ? null : new Date()
         })
 
-        this.setState({ tasks }, this.filterTasks())
+        this.setState({ tasks }, this.filterTasks)
     }
 
 
@@ -55,6 +57,7 @@ export default class TaskList extends Component{
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
         return(
             <View style={styles.container}>
+                <AddTask isVisible={this.state.showAddTask} onCancel={() => this.setState({ showAddTask: false })} />
                 <ImageBackground source={todayImage} style={styles.background}>
                     <View style={styles.iconBar}>
                         <TouchableOpacity onPress={this.togleFilter}>

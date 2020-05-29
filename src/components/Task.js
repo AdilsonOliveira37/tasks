@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, StyleSheet, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
+import Swipeable from  'react-native-gesture-handler/Swipeable'
 import commonStyles from '../commonStyles'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import moment from 'moment'
@@ -11,18 +12,28 @@ export default props => {
 
     const date = props.doneAt ? props.doneAt : props.estimateAt
     const formattedDate = moment (date).locale('pt-br').format('ddd, D [de] MMMM')
+    const getRightContent = () => {
+        return(
+            <TouchableOpacity style={styles.right} onPress={() => props.onDelete(props.id)}>
+                <Icon name="trash" size={30} color = 'white' />
+            </TouchableOpacity>
+        )
+    }
     return(
-        <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={() => props.togleTask(props.id)}>
-                <View style={styles.checkContainer}>
-                    {getCheckView(props.doneAt)}
+            <Swipeable renderRightActions={getRightContent}>
+                <View style={styles.container}>
+                    <TouchableWithoutFeedback onPress={() => props.togleTask(props.id)}>
+                        <View style={styles.checkContainer}>
+                            {getCheckView(props.doneAt)}
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <View>
+                        <Text style={[styles.desc, doneOrNotStyle]}>{props.title}</Text>
+                        <Text style={[styles.desc, doneOrNotStyle]}>{props.priority}</Text>
+                        <Text style={styles.date}>{formattedDate}</Text>
+                    </View>
                 </View>
-            </TouchableWithoutFeedback>
-            <View>
-                <Text style={[styles.desc, doneOrNotStyle]}>{props.desc}</Text>
-                <Text style={styles.date}>{formattedDate}</Text>
-            </View>
-        </View>
+            </Swipeable>
     )
 }
 function getCheckView(doneAt){
@@ -76,5 +87,12 @@ const styles = StyleSheet.create({
         fontFamily: commonStyles.fontFamily,
         color: commonStyles.colors.subText,
         fontSize: 12,
+    },
+    right: {
+        backgroundColor: 'red',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingHorizontal: 20,
     }
 })

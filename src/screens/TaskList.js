@@ -21,7 +21,7 @@ import tomorrowImage from '../../assets/imgs/tomorrow.jpg'
 import weekImage from '../../assets/imgs/week.jpg'
 import monthImage from '../../assets/imgs/month.jpg'
 
-import { server, showError } from '../common'
+import { showError } from '../common'
 import commonStyles from '../commonStyles'
 import Task from '../components/Task'
 import AddTask from './AddTask'
@@ -53,7 +53,7 @@ export default class TaskList extends Component {
             const maxDate = moment()
                 .add({ days: this.props.daysAhead})
                 .format('YYYY-MM-DD 23:59:59')
-            const res = await axios.get(`${server}/tasks?date=${maxDate}`)
+            const res = await axios.get(`http://10.0.0.218:3000/tasks?date=${maxDate}`)
             this.setState({ tasks: res.data }, this.filterTasks)
         } catch(e) {
             showError(e)
@@ -81,7 +81,7 @@ export default class TaskList extends Component {
 
     toggleTask = async taskId => {
         try {
-            await axios.put(`${server}/tasks/${taskId}/toggle`)
+            await axios.put(`http://10.0.0.218:3000}/tasks/{taskId}/toggle`)
             this.loadTasks()
         } catch(e) {
             showError(e)
@@ -95,7 +95,7 @@ export default class TaskList extends Component {
         }
 
         try {
-            await axios.post(`${server}/tasks`, {
+            await axios.post(`http://10.0.0.218:3000/tasks`, {
                desc: newTask.desc,
                estimateAt: newTask.date 
             })
@@ -108,7 +108,7 @@ export default class TaskList extends Component {
 
     deleteTask = async taskId => {
         try {
-            await axios.delete(`${server}/tasks/${taskId}`)
+            await axios.delete(`http://10.0.0.218:3000/tasks/${taskId}`)
             this.loadTasks()
         } catch(e) {
             showError(e)

@@ -15,12 +15,12 @@ import backgroundImage from '../../assets/imgs/login.jpg'
 import commonStyles from '../commonStyles'
 import AuthInput from '../components/AuthInput'
 
-import { server, showError, showSuccess } from '../common'
+import { showError, showSuccess } from '../common'
 
 const initialState = {
     name: '',
-    email: 'admin@gmail.com',
-    password: '123456',
+    email: '',
+    password: '',
     confirmPassword: '',
     stageNew: false
 }
@@ -41,7 +41,7 @@ export default class Auth extends Component {
 
     signup = async () => {
         try {
-            await axios.post(`${server}/signup`, {
+            await axios.post(`http://10.0.0.218:3000/signup`, {
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password,
@@ -57,7 +57,7 @@ export default class Auth extends Component {
 
     signin = async () => {
         try {
-            const res = await axios.post(`${server}/signin`, {
+            const res = await axios.post(`http://10.0.0.218:3000/signin`, {
                 email: this.state.email,
                 password: this.state.password
             })

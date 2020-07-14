@@ -21,7 +21,7 @@ import tomorrowImage from '../../assets/imgs/tomorrow.jpg'
 import weekImage from '../../assets/imgs/week.jpg'
 import monthImage from '../../assets/imgs/month.jpg'
 
-import { showError } from '../common'
+import { showError, server } from '../common'
 import commonStyles from '../commonStyles'
 import Task from '../components/Task'
 import AddTask from './AddTask'
@@ -49,11 +49,11 @@ export default class TaskList extends Component {
     }
 
     loadTasks = async () => {
-        try {
+        try {  
             const maxDate = moment()
                 .add({ days: this.props.daysAhead})
-                .format('YYYY-MM-DD 23:59:59')
-            const res = await axios.get(`http://10.0.0.218:3000/tasks?date=${maxDate}`)
+                .format('YYYY-MM-DD 23:59')
+            const res = await axios.get(`${server}/tasks?date=${maxDate}`)
             this.setState({ tasks: res.data }, this.filterTasks)
         } catch(e) {
             showError(e)
@@ -81,7 +81,7 @@ export default class TaskList extends Component {
 
     toggleTask = async taskId => {
         try {
-            await axios.put(`http://10.0.0.218:3000}/tasks/{taskId}/toggle`)
+            await axios.put(`${server}/tasks/${taskId}/toggle`)
             this.loadTasks()
         } catch(e) {
             showError(e)
@@ -93,22 +93,21 @@ export default class TaskList extends Component {
             Alert.alert('Dados Inválidos', 'Descrição não informada!')
             return 
         }
-
         try {
-            await axios.post(`http://10.0.0.218:3000/tasks`, {
+            await axios.post(`${server}/tasks`, {
                desc: newTask.desc,
                estimateAt: newTask.date 
             })
-
             this.setState({ showAddTask: false }, this.loadTasks)
         } catch(e) {
+            console.log(e)
             showError(e)
         }
     }
 
     deleteTask = async taskId => {
         try {
-            await axios.delete(`http://10.0.0.218:3000/tasks/${taskId}`)
+            await axios.delete(`${server}/tasks/${taskId}`)
             this.loadTasks()
         } catch(e) {
             showError(e)

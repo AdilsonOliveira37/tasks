@@ -17,7 +17,7 @@ export default props => {
     }
 
     return (
-        <ScrollView>
+        <ScrollView >
             <View style={styles.header}>
                 <Text style={styles.title}>Tasks</Text>
                 <Gravatar style={styles.avatar} 
@@ -33,13 +33,13 @@ export default props => {
                         {props.navigation.getParam('email')}
                     </Text>
                 </View>
-                <TouchableOpacity onPress={logout}>
+                </View>
+            <DrawerItems {...props} />
+            <TouchableOpacity onPress={logout}>
                     <View style={styles.logoutIcon}>
                         <Icon name='sign-out' size={30} color='#800' />
                     </View>
-                </TouchableOpacity>
-            </View>
-            <DrawerItems {...props} />
+            </TouchableOpacity>
         </ScrollView>
     )
 }

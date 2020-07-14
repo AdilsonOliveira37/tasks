@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
-import {
-    Platform,
-    Modal,
-    View,
-    Text,
-    TouchableOpacity,
-    TextInput,
-    StyleSheet,
-    TouchableWithoutFeedback
-} from 'react-native'
+import {    Platform,    Modal,    View,    Text,    TouchableOpacity,    TextInput,    StyleSheet,    TouchableWithoutFeedback } from 'react-native'
 
 import moment from 'moment'
 import DateTimePicker from '@react-native-community/datetimepicker'
 
 import commonStyles from '../commonStyles'
 
-const initialState = { desc: '', date: new Date(), showDatePicker: false }
+const initialState = { 
+    desc: '', 
+    date: new Date(),
+    showDatePicker: false 
+}
 
 export default class AddTask extends Component {
 
@@ -28,7 +23,6 @@ export default class AddTask extends Component {
             desc: this.state.desc,
             date: this.state.date
         }
-
         this.props.onSave && this.props.onSave(newTask)
         this.setState({ ...initialState })
     }

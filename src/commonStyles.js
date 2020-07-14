@@ -1,7 +1,7 @@
 export default {
     fontFamily: 'Lato',
     colors: {
-        today: '#06C59C',
+        today: 'red',
         tomorrow: '#FF0',
         week: '#0B4',
         month: '#1631BE',

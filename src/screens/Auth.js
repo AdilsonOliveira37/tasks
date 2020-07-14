@@ -15,12 +15,12 @@ import backgroundImage from '../../assets/imgs/login.jpg'
 import commonStyles from '../commonStyles'
 import AuthInput from '../components/AuthInput'
 
-import { showError, showSuccess } from '../common'
+import { server, showError, showSuccess } from '../common'
 
 const initialState = {
     name: '',
-    email: '',
-    password: '',
+    email: 'aa@g',
+    password: '123456',
     confirmPassword: '',
     stageNew: false
 }
@@ -32,7 +32,7 @@ export default class Auth extends Component {
     }
 
     signinOrSignup = () => {
-        if(this.state.stageNew) {
+        if (this.state.stageNew) {
             this.signup()
         } else {
             this.signin()
@@ -41,7 +41,7 @@ export default class Auth extends Component {
 
     signup = async () => {
         try {
-            await axios.post(`http://10.0.0.218:3000/signup`, {
+            await axios.post(`${server}/signup`, {
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password,
@@ -50,14 +50,14 @@ export default class Auth extends Component {
 
             showSuccess('Usuário cadastro!')
             this.setState({ ...initialState })
-        } catch(e) {
+        } catch (e) {
             showError(e)
         }
     }
 
     signin = async () => {
         try {
-            const res = await axios.post(`http://10.0.0.218:3000/signin`, {
+            const res = await axios.post(`${server}/signin`, {
                 email: this.state.email,
                 password: this.state.password
             })
@@ -65,17 +65,17 @@ export default class Auth extends Component {
             AsyncStorage.setItem('userData', JSON.stringify(res.data))
             axios.defaults.headers.common['Authorization'] = `bearer ${res.data.token}`
             this.props.navigation.navigate('Home', res.data)
-        } catch(e) {
+        } catch (e) {
             showError(e)
         }
     }
-    
+
     render() {
         const validations = []
         validations.push(this.state.email && this.state.email.includes('@'))
         validations.push(this.state.password && this.state.password.length >= 6)
 
-        if(this.state.stageNew) {
+        if (this.state.stageNew) {
             validations.push(this.state.name && this.state.name.trim().length >= 3)
             validations.push(this.state.password === this.state.confirmPassword)
         }

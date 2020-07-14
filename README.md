@@ -1,4 +1,4 @@
-<h1 style="color: #00BDAA">Projeto: Agendador de Tarefas</h1>
+<h1 style="color: '#00BDAA'">Projeto: Agendador de Tarefas</h1>
 
 <p>Para executa-lo utilize o comando após ter</p>
 <pre>npx react-native run-android tasks</pre>

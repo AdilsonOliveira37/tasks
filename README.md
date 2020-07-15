@@ -1,6 +1,6 @@
-<h1 style="color: '#00BDAA'">Projeto: Agendador de Tarefas - Tasks</h1>
+<h1>Projeto: Agendador de Tarefas - Tasks</h1>
 
-<img src="https://res.cloudinary.com/oli37/image/upload/v1594812117/logomenor_zinb3k.svg">
+<img src="https://res.cloudinary.com/oli37/image/upload/v1594812117/logomenor_zinb3k.svg" height=193 width=261>
 
 <p>Para executa-lo utilize o comando após ter</p>
 <pre>npx react-native run-android tasks</pre>

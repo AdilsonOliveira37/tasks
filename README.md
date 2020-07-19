@@ -2,7 +2,8 @@
 
 <img src="https://res.cloudinary.com/oli37/image/upload/v1594812117/logomenor_zinb3k.svg" height=193 width=261>
 
-<p>Para executa-lo utilize o comando após ter</p>
+<h2>Getting Started</h2>
+<p>Para executa-lo utilize o comando</p>
 <pre>npx react-native run-android tasks</pre>
 
 <p>Link da API para a o funcionamento online do projeto:</p>

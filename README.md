@@ -1,15 +1,11 @@
 <h1>Projeto: Agendador de Tarefas - Tasks</h1>
 
-<img src="https://res.cloudinary.com/oli37/image/upload/v1601426364/Git/UIMuseuNacional_mb3fd9.jpg" height=193 width=261>
+<img src="https://res.cloudinary.com/oli37/image/upload/v1601426364/Git/UIMuseuNacional_mb3fd9.jpg" height=1012 width=965>
 
-<h2>Getting Started</h2>
-<p>Para executa-lo utilize o comando</p>
-<pre>npx react-native run-android tasks</pre>
+<h2>Desenvolvimento</h2>
+<p>Este Web site One-Page foi desenvolvido totalmente em HTML5, e CSS3, com um simples metodo de implementação e de facil entendimento.</p>
 
-<p>Link da API para a o funcionamento online do projeto:</p>
-<pre>https://github.com/AdilsonOliveira37/tasks-backend</pre>
-
-<p>Para rodar a API, utilize o comando</p>
-<pre>npm start</pre>
+<p>Para fazer o download do repositório, utilize o seguinte comando no terminal ou cmd:</p>
+<pre>git clone https://github.com/AdilsonOliveira37/MuseuNacional</pre>
 
 

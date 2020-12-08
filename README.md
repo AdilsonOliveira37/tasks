@@ -9,8 +9,6 @@
 <p>Link da API para a o funcionamento online do projeto:</p>
 <pre>https://github.com/AdilsonOliveira37/tasks-backend</pre>
 
-<p>Para rodar a API, utilize o comando</p>
-<pre>npm start</pre>
 
 
 
